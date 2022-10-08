@@ -18,8 +18,28 @@ def register(request):
             user = User.objects.create_user(username=username, first_name=first_name, last_name=last_name, password=password, email=email)
             user.save()
             messages.success(request, 'You are now registered and can log in')
+            return redirect(signin)
+
     else:
         form = Register()
-    return render(request, 'accounts/register.html',{
-    "form": form
-  })
+    return render(request, 'accounts/register.html',{"form": form})
+
+def signin(request):
+    if request.method == 'POST':
+        form = Signin(request.POST)
+        if form.is_valid():
+            username = request.POST['username']
+            password = request.POST['password']
+
+            user = auth.authenticate(username=username, password=password)
+
+            if user is not None:
+                auth.login(request, user)
+                messages.success(request, 'You are now logged in')
+                return redirect('dashboard')
+            else:
+                messages.error(request, 'Invalid credentials')
+                return redirect('login')
+    else:
+        form = Signin()
+        return render(request, 'accounts/login.html', {"form": form})

@@ -1,13 +1,12 @@
 from django import forms
 from django.contrib.auth.models import User
-from django.contrib.auth.password_validation import validate_password
 
 class Register(forms.Form):
     first_name = forms.CharField(max_length=255, widget=forms.TextInput(attrs={'placeholder':'Enter Your First Name'}))
 
     last_name = forms.CharField(max_length=255, widget=forms.TextInput(attrs={'placeholder':'Enter Your Last Name'}))
 
-    username = forms.CharField(max_length=9, widget=forms.TextInput(attrs={'placeholder':'Enter Your Userame'}))
+    username = forms.CharField(max_length=9, widget=forms.TextInput(attrs={'placeholder':'Enter Your Matric Number or Staff Id'}))
 
     email = forms.EmailField(max_length=255, widget=forms.EmailInput(attrs={'placeholder':'Enter Your E-mail Address'}))
 
@@ -43,15 +42,17 @@ class Register(forms.Form):
 
         else:
             pass
-    
-        if len(username) == 9:
-            username = int(username)
-
-        elif len(username) == 7:
-            username = username.isalnum()
         
-        else:
+        try:
+            if len(username) == 9:
+                username = int(username)
+        except ValueError:
             self.errors[''] = self.error_class(["You have entered an invalid username"])
+
+        if not (len(username) == 7 and username.isalnum()):
+            self.errors[''] = self.error_class(["Youuuu have entered an invalid username"])
+        else:
+            username = str(username)
 
         for instance in User.objects.all():
             if instance.username == username:
@@ -63,6 +64,6 @@ class Register(forms.Form):
 
         return self.cleaned_data
 
-class Login(forms.Form):
+class Signin(forms.Form):
     username = forms.CharField(max_length=255, widget=forms.TextInput(attrs={'placeholder':'Enter Your Userame'}))
     password = forms.CharField(max_length=255, widget=forms.PasswordInput(attrs={'placeholder':'Enter Your Password'}))
