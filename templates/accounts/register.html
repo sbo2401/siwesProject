@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="/static/css/register.css"> -->
+    <!-- <link rel="stylesheet" href="/static/css/all.css"> -->
+    <!-- <script src="/static/js/staff.js"></script> -->
+    <title>SignUp</title>
+</head>
+<body>
+    <div class="container">
+        <div class="title">Staff SignUp</div>
+        <form action="/register/" method="POST">
+            {% csrf_token %}
+            <div class="user-details">
+                <div class="input-box">
+                    {{ form.first_name }}
+                </div>  
+
+                <div class="input-box">
+                    {{ form.last_name }}
+                </div> 
+
+                <div class="input-box">
+                    {{ form.username }}
+                </div> 
+
+                <div class="input-box">
+                    {{ form.email }}
+                </div> 
+
+                <div class="input-box" id="pass-box">
+                    {{ form.password }}
+                </div> 
+
+                <div class="input-box" id="pass-box">
+                    {{ form.password2 }}
+                </div> 
+                {{form.errors}}
+                <div class="button">
+                    <input type="submit" value="SignUp">
+                </div>
+        </div>
+        </form> 
+</body>
+</html>
