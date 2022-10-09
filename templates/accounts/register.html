@@ -5,13 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/css/register.css">
-    <!-- <link rel="stylesheet" href="/static/css/all.css"> -->
-    <!-- <script src="/static/js/staff.js"></script> -->
+    <link rel="stylesheet" href="/static/css/all.css">
+    <script src="/static/js/register.js"></script>
     <title>SignUp</title>
 </head>
 <body>
     <div class="container">
-        <div class="title">Staff SignUp</div>
+        <div class="title">SignUp</div>
         <form action="/register/" method="POST">
             {% csrf_token %}
             <div class="user-details">
@@ -32,13 +32,24 @@
                 </div> 
 
                 <div class="input-box" id="pass-box">
+                    <span class="eye" onclick="passwordone()">
+                        <i class="fa fa-eye" id="hide1"></i>
+                        <i class="fa fa-eye-slash" id="hide2"></i>
+                    </span>
                     {{ form.password }}
                 </div> 
 
                 <div class="input-box" id="pass-box">
+                    <span class="eye" onclick="passwordtwo()">
+                        <i class="fa fa-eye" id="hide3"></i>
+                        <i class="fa fa-eye-slash" id="hide4"></i>
+                    </span>
                     {{ form.password2 }}
                 </div> 
-                {{form.errors}}
+                <div class="errors">
+                    {{form.errors}}
+                </div>
+                
                 <div class="button">
                     <input type="submit" value="SignUp">
                 </div>
