@@ -73,10 +73,7 @@ class Register(forms.Form):
         except ValueError:
             self.errors[""] = self.error_class(["You have entered an invalid username"])
 
-        # if not (len(username) == 7 and username.isalnum()):
-        #     self.errors[''] = self.error_class(["Youuuu have entered an invalid username"])
-        # else:
-        #     username = str(username)
+
 
         for instance in User.objects.all():
             if instance.username == str(username):

@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
+from django.template import loader
+from django.http import HttpResponse
 from .forms import *
 
 # Create your views here.
@@ -48,7 +50,17 @@ def signin(request):
                 return redirect("dashboard")
             else:
                 messages.error(request, "Invalid credentials")
-                return redirect("login")
+                return redirect("signin")
     else:
         form = Signin()
         return render(request, "accounts/login.html", {"form": form})
+
+
+def dashboard(request):
+    template = loader.get_template("accounts/dashboard.html")
+    return HttpResponse(template.render({}, request))
+
+
+def index(request):
+    template = loader.get_template("index.html")
+    return HttpResponse(template.render({}, request))
