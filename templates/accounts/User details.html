@@ -11,8 +11,8 @@
 </head>
 <body>
     <div class="container">
-        <div class="title">SignUp</div>
-        <form action="/register/" method="POST">
+        <div class="title">Student Details</div>
+        <form action="/user/" method="POST">
             {% csrf_token %}
             <div class="user-details">
                 <div class="input-box">
@@ -20,11 +20,11 @@
                 </div>  
 
                 <div class="input-box">
-                    {{ form.middle_name }}
+                    {{ form.last_name }}
                 </div> 
 
                 <div class="input-box">
-                    {{ form.last_name }}
+                    {{ form.other_name }}
                 </div> 
 
                 <div class="input-box">
@@ -35,11 +35,14 @@
                     {{ form.country }}
                 </div> 
 
-                <div class="input-box" id="pass-box">
+                <div class="input-box">
                     {{ form.date_of_birth }}
                 </div> 
 
-                <div class="input-box" id="pass-box">
+                <div class="input-box">
+                    {{ form.gender }}
+                </div>
+                <div class="input-box">
                     {{ form.tel }}
                 </div>
 

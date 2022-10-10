@@ -13,6 +13,6 @@ class ContactForm(forms.ModelForm):
             'tel': PhoneNumberPrefixWidget(initial='NG'),
         }
 
-@admin.register(Userdetail)
+@admin.register(User_detail)
 class ContactAdmin(admin.ModelAdmin):
     form = ContactForm
