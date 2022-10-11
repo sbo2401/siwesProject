@@ -87,10 +87,10 @@ def signout(request):
 def studentlist(request):
     if request.user.is_superuser:
         mymembers = User_detail.objects.all().values()
-    elif request.user.is_user:
-        messages.error(request, "You do not have permission to view this page")
-        return redirect(signout)
-    return render(request, "admin/list.html", {"mymembers": mymembers})
+        return render(request, "admin/list.html", {"mymembers": mymembers})
+    else:
+        return redirect("superuser")
+    
 
 
 def superuser(request):
