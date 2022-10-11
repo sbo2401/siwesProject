@@ -51,10 +51,6 @@ def signin(request):
             if user is not None:
                 auth.login(request, user)
                 return redirect("profile")
-
-            elif request.user.is_superuser:
-                messages.error(request, "Invalid credentials")
-
             else:
                 messages.error(request, "Invalid credentials")
                 return redirect("signin")
@@ -80,6 +76,9 @@ def user(request):
             user = form.save(commit=False)
             user.save()
             return render(request, "thanks.html")
+    elif request.method == "POST" and request.user.is_superuser:
+        messages.success(request, "This field is for noe-admin user")
+        return redirect(signout)
     else:
         form = Userdetail(initial={"username": request.user.username})
     return render(request, "accounts/User details.html", {"form": form})
