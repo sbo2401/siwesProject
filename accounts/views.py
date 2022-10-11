@@ -52,10 +52,9 @@ def signin(request):
                 auth.login(request, user)
                 return redirect("profile")
 
-            elif user is not None and request.user.is_superuser:
+            elif request.user.is_superuser:
                 messages.error(request, "Invalid credentials")
-                return redirect("signin")
-                
+
             else:
                 messages.error(request, "Invalid credentials")
                 return redirect("signin")
