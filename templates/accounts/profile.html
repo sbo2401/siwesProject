@@ -4,42 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Profile</title>
 </head>
 <body>
     {% if request.user.is_authenticated %}
-    <h3 class="user">Hello {{request.user.first_name}}</h3>
+    <h3 class="user">Hello {{request.user}}</h3>
     {% endif %}
     <div class="messages">
         {% for message in messages %}
             <p>{{ message }}</p>
         {% endfor %}
     </div>
-    <p>
-        <ol>
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem minima, consequuntur reiciendis repudiandae aut ab fugit nemo qui est voluptatum quae veniam eveniet blanditiis necessitatibus libero eligendi, eaque autem quo!
-            Quisquam inventore at laboriosam veritatis, tenetur sapiente. Sed consequatur aut distinctio dolor debitis, quas quod reiciendis laboriosam tempore consequuntur expedita ex enim eligendi porro illum, eveniet vitae sapiente alias perferendis?
-            Eaque ducimus magni quae alias obcaecati, ullam rerum culpa laudantium repellendus aspernatur deleniti iusto. Vel, quis veritatis odit aut, dolorum vero labore facere perspiciatis pariatur vitae ipsa illum adipisci! Nisi!</li>
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem minima, consequuntur reiciendis repudiandae aut ab fugit nemo qui est voluptatum quae veniam eveniet blanditiis necessitatibus libero eligendi, eaque autem quo!
-            Quisquam inventore at laboriosam veritatis, tenetur sapiente. Sed consequatur aut distinctio dolor debitis, quas quod reiciendis laboriosam tempore consequuntur expedita ex enim eligendi porro illum, eveniet vitae sapiente alias perferendis?
-            Eaque ducimus magni quae alias obcaecati, ullam rerum culpa laudantium repellendus aspernatur deleniti iusto. Vel, quis veritatis odit aut, dolorum vero labore facere perspiciatis pariatur vitae ipsa illum adipisci! Nisi!</li>
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem minima, consequuntur reiciendis repudiandae aut ab fugit nemo qui est voluptatum quae veniam eveniet blanditiis necessitatibus libero eligendi, eaque autem quo!
-            Quisquam inventore at laboriosam veritatis, tenetur sapiente. Sed consequatur aut distinctio dolor debitis, quas quod reiciendis laboriosam tempore consequuntur expedita ex enim eligendi porro illum, eveniet vitae sapiente alias perferendis?
-            Eaque ducimus magni quae alias obcaecati, ullam rerum culpa laudantium repellendus aspernatur deleniti iusto. Vel, quis veritatis odit aut, dolorum vero labore facere perspiciatis pariatur vitae ipsa illum adipisci! Nisi!</li>
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem minima, consequuntur reiciendis repudiandae aut ab fugit nemo qui est voluptatum quae veniam eveniet blanditiis necessitatibus libero eligendi, eaque autem quo!
-            Quisquam inventore at laboriosam veritatis, tenetur sapiente. Sed consequatur aut distinctio dolor debitis, quas quod reiciendis laboriosam tempore consequuntur expedita ex enim eligendi porro illum, eveniet vitae sapiente alias perferendis?
-            Eaque ducimus magni quae alias obcaecati, ullam rerum culpa laudantium repellendus aspernatur deleniti iusto. Vel, quis veritatis odit aut, dolorum vero labore facere perspiciatis pariatur vitae ipsa illum adipisci! Nisi!</li>
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem minima, consequuntur reiciendis repudiandae aut ab fugit nemo qui est voluptatum quae veniam eveniet blanditiis necessitatibus libero eligendi, eaque autem quo!
-            Quisquam inventore at laboriosam veritatis, tenetur sapiente. Sed consequatur aut distinctio dolor debitis, quas quod reiciendis laboriosam tempore consequuntur expedita ex enim eligendi porro illum, eveniet vitae sapiente alias perferendis?
-            Eaque ducimus magni quae alias obcaecati, ullam rerum culpa laudantium repellendus aspernatur deleniti iusto. Vel, quis veritatis odit aut, dolorum vero labore facere perspiciatis pariatur vitae ipsa illum adipisci! Nisi!</li>
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem minima, consequuntur reiciendis repudiandae aut ab fugit nemo qui est voluptatum quae veniam eveniet blanditiis necessitatibus libero eligendi, eaque autem quo!
-            Quisquam inventore at laboriosam veritatis, tenetur sapiente. Sed consequatur aut distinctio dolor debitis, quas quod reiciendis laboriosam tempore consequuntur expedita ex enim eligendi porro illum, eveniet vitae sapiente alias perferendis?
-            Eaque ducimus magni quae alias obcaecati, ullam rerum culpa laudantium repellendus aspernatur deleniti iusto. Vel, quis veritatis odit aut, dolorum vero labore facere perspiciatis pariatur vitae ipsa illum adipisci! Nisi!</li>
-        </ol>
-    </p>
-    <p>
-        <a href="/user">Click here to update your profile</a>
-    </p>
+    <div class="user-profile">
+        <p class="update">
+            <a href="/user">Click here to create your profile</a>
+        </p>
+    </div>
+    
 
     <div class="button">
         <a href="/signout/">
@@ -47,5 +28,21 @@
         </a>
         
     </div>
+
+    <style>
+        h3{
+            font-size: 20px;
+            font-weight: 100;
+            font-style: italic;
+            font-variant: small-caps;
+        }
+        .user-profile .update{
+            font-size: 20px;
+        }
+        .user-profile .update a{
+            text-decoration: none;
+            color: black;
+        }
+    </style>
 </body>
 </html>

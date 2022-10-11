@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/static/css/details.css">
     <!-- <link rel="stylesheet" href="/static/css/all.css"> -->
     <!-- <script src="/static/js/register.js"></script> -->
-    <title>SignUp</title>
+    <title>Student Profile</title>
 </head>
 <body>
     <div class="container">
@@ -15,6 +15,10 @@
         <form action="/user/" method="POST">
             {% csrf_token %}
             <div class="user-details">
+                <div class="input-box">
+                    {{ form.username }}
+                </div> 
+
                 <div class="input-box">
                     {{ form.first_name }}
                 </div>  

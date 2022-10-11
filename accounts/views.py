@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import logout
 from django.template import loader
 from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
 from .forms import *
 
 
@@ -38,7 +39,7 @@ def register(request):
 
 def signin(request):
     if request.user.is_authenticated:
-        return redirect (profile)
+        return redirect(profile)
     if request.method == "POST":
         form = Signin(request.POST)
         if form.is_valid():
@@ -49,9 +50,6 @@ def signin(request):
 
             if user is not None:
                 auth.login(request, user)
-                messages.success(
-                    request, "You are now logged in."
-                )
                 return redirect("profile")
             else:
                 messages.error(request, "Invalid credentials")
@@ -61,22 +59,23 @@ def signin(request):
         return render(request, "accounts/login.html", {"form": form})
 
 
+@login_required(login_url="signin")
 def profile(request):
     template = loader.get_template("accounts/profile.html")
     return HttpResponse(template.render({}, request))
 
-
+@login_required(login_url="signin")
 def user(request):
     if request.method == "POST":
         form = Userdetail(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
             user.save()
-            messages.success(request, "You Have Successfully updated your details")
-            return redirect(profile)
+            return render(request, "thanks.html")
     else:
         form = Userdetail()
     return render(request, "accounts/User details.html", {"form": form})
+
 
 def signout(request):
     logout(request)
