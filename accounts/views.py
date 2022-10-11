@@ -73,6 +73,9 @@ def user(request):
             user = form.save(commit=False)
             user.save()
             return render(request, "thanks.html")
+
+    elif request.method == "POST" and request.user.is_superuser:
+        return redirect("signin")
     else:
         form = Userdetail(initial={"username": request.user.username})
     return render(request, "accounts/User details.html", {"form": form})
