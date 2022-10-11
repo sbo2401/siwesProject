@@ -1,1 +1,1 @@
-web: gunicorn libmain.wsgi --log-file -
+web: gunicorn siwesProject.wsgi --log-file -
