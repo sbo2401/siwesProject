@@ -61,11 +61,8 @@ def signin(request):
 
 @login_required(login_url="signin")
 def profile(request):
-    if  not request.user.is_superuser:
-        template = loader.get_template("accounts/profile.html")
-        return HttpResponse(template.render({}, request))
-    else:
-        return redirect("signin")
+    template = loader.get_template("accounts/profile.html")
+    return HttpResponse(template.render({}, request))
 
 
 @login_required(login_url="signin")
@@ -76,9 +73,6 @@ def user(request):
             user = form.save(commit=False)
             user.save()
             return render(request, "thanks.html")
-    elif request.method == "POST" and request.user.is_superuser:
-        messages.success(request, "This field is for noe-admin user")
-        return redirect(signout)
     else:
         form = Userdetail(initial={"username": request.user.username})
     return render(request, "accounts/User details.html", {"form": form})
@@ -93,10 +87,10 @@ def signout(request):
 def studentlist(request):
     if request.user.is_superuser:
         mymembers = User_detail.objects.all().values()
-        return render(request, "admin/list.html", {"mymembers": mymembers})
-    else:
-        return redirect("superuser")
-    
+    elif request.user.is_user:
+        messages.error(request, "You do not have permission to view this page")
+        return redirect(signout)
+    return render(request, "admin/list.html", {"mymembers": mymembers})
 
 
 def superuser(request):
