@@ -51,6 +51,11 @@ def signin(request):
             if user is not None:
                 auth.login(request, user)
                 return redirect("profile")
+
+            elif user is not None and request.user.is_superuser:
+                messages.error(request, "Invalid credentials")
+                return redirect("signin")
+                
             else:
                 messages.error(request, "Invalid credentials")
                 return redirect("signin")
@@ -61,8 +66,11 @@ def signin(request):
 
 @login_required(login_url="signin")
 def profile(request):
-    template = loader.get_template("accounts/profile.html")
-    return HttpResponse(template.render({}, request))
+    if  not request.user.is_superuser:
+        template = loader.get_template("accounts/profile.html")
+        return HttpResponse(template.render({}, request))
+    else:
+        return redirect("signin")
 
 
 @login_required(login_url="signin")
