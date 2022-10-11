@@ -9,7 +9,6 @@ body{
     height: 100vh;
     justify-content: center;
     align-items: center;
-    /* background: rgba(0,0,0,0.7) url(/static/img/2.jpg) no-repeat; */
     background-size: cover;
     background-blend-mode: darken;
     background-color: rgba(0,0,0,0.6);
