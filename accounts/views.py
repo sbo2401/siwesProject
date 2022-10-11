@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
-from django.contrib.auth import logout
+from django.contrib.auth import logout, login, authenticate
 from django.template import loader
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
@@ -64,6 +64,7 @@ def profile(request):
     template = loader.get_template("accounts/profile.html")
     return HttpResponse(template.render({}, request))
 
+
 @login_required(login_url="signin")
 def user(request):
     if request.method == "POST":
@@ -73,10 +74,39 @@ def user(request):
             user.save()
             return render(request, "thanks.html")
     else:
-        form = Userdetail()
+        form = Userdetail(initial = {'username': request.user.username})
     return render(request, "accounts/User details.html", {"form": form})
 
 
 def signout(request):
     logout(request)
     return redirect(signin)
+
+
+@login_required(login_url="superuser")
+def studentlist(request):
+    if request.user.is_superuser:
+        mymembers = User_detail.objects.all().values()
+    elif request.user.is_user:    
+        messages.error(request, "You do not have permission to view this page")
+        return redirect(signout)
+    return render(request, "admin/list.html", {"mymembers": mymembers})
+
+
+def superuser(request):
+    if request.method == "POST":
+        form = Signin(request.POST)
+        if form.is_valid():
+            username = request.POST["username"]
+            password = request.POST["password"]
+            user = auth.authenticate(username=username, password=password)
+
+            if user is not None and user.is_superuser:
+                auth.login(request, user)
+                return redirect("studentlist")
+            else:
+                messages.error(request, "Invalid credentials")
+                return redirect("superuser")
+    else:
+        form = Signin()
+        return render(request, "accounts/superuser.html", {"form": form})

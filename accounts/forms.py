@@ -112,7 +112,7 @@ class Userdetail(forms.ModelForm):
             "date_of_birth": forms.DateInput(attrs={"type": "date"}),
             "gender": forms.RadioSelect(attrs={"type": "radio", "class": "gender"}),
             "tel": forms.TextInput(attrs={"placeholder": "Enter Your Phone Number"}),
-            'username':forms.TextInput(attrs={'placeholder': 'Enter Your Username'}),
+            "username": forms.TextInput(attrs={"placeholder": "Enter Your Username"}),
         }
 
     def clean(self):
@@ -128,4 +128,3 @@ class Userdetail(forms.ModelForm):
                 self.errors[""] = self.error_class(["E-mail already in use"])
             elif instance.tel == tel:
                 self.errors[""] = self.error_class(["Phone Number already exists"])
-

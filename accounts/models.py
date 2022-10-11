@@ -20,4 +20,4 @@ class User_detail(models.Model):
     tel = PhoneNumberField()
 
     def __str__(self):
-        return self.email
+        return self.username
