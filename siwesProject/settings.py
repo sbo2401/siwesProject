@@ -82,10 +82,10 @@ WSGI_APPLICATION = "siwesProject.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "siwes",
-        "USER": "subomi",
-        "PASSWORD": "password",
-        "HOST": "localhost",
+        "NAME": "d43phvbhlp18on",
+        "USER": "hnhuoobdaggsfx",
+        "PASSWORD": "031abd7816655cc221aa26be0e62f2ff102e83e06ef41038789ad29144855eb3",
+        "HOST": "ec2-52-30-159-47.eu-west-1.compute.amazonaws.com",
         "PORT": "5432",
     }
 }
