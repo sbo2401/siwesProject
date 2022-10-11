@@ -74,7 +74,7 @@ def user(request):
             user.save()
             return render(request, "thanks.html")
     else:
-        form = Userdetail(initial = {'username': request.user.username})
+        form = Userdetail(initial={"username": request.user.username})
     return render(request, "accounts/User details.html", {"form": form})
 
 
@@ -87,7 +87,7 @@ def signout(request):
 def studentlist(request):
     if request.user.is_superuser:
         mymembers = User_detail.objects.all().values()
-    elif request.user.is_user:    
+    elif request.user.is_user:
         messages.error(request, "You do not have permission to view this page")
         return redirect(signout)
     return render(request, "admin/list.html", {"mymembers": mymembers})
