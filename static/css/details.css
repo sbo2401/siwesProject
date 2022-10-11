@@ -9,7 +9,7 @@ body{
     height: 100vh;
     justify-content: center;
     align-items: center;
-    background: rgba(0,0,0,0.7) url(/static/img/3.jpg) no-repeat;
+    background: rgba(0,0,0,0.7) url(/static/img/2.jpg) no-repeat;
     background-size: cover;
     background-blend-mode: darken;
     background-color: rgba(0,0,0,0.6);
@@ -18,19 +18,17 @@ body{
 .container{
     max-width: 400px;
     width: 100%;
-    background:rgb(255,255,255);
+    background:rgba(255,255,255);
     padding: 25px 30px;
     border-radius: 10px;
-    color: white;
 }
-.container .login{
+.container .title{
     font-size: 25px;
     font-weight: 500;
     position:relative;
     color: black;
-    margin-bottom: 50px;
 }
-.container .login::before{
+.container .title::before{
     content: '';
     position: absolute;
     left: 0;
@@ -48,6 +46,7 @@ body{
 }
 form .user-details .input-box{
     margin-bottom: 6px;
+    /* width: calc(100% / 2 - 20px); */
 }
 .user-details .input-box .details{
     display: block;
@@ -59,22 +58,41 @@ form .user-details .input-box{
     width: 100%;
     outline: none;
     border: none;
-    padding-left:20px;
+    padding-left:10px;
     font-size: 20px;
     background: transparent;
     border-bottom:2px #adadad solid;
     transition: all 0.3s ease;
-    margin-bottom: 37px;
+    margin-bottom: 20px;
     margin-top: 10px;
+}
+.user-details .gender-details .gender{
+    display: flex;
+    color: #2c2c2c;
+    justify-content: space-between;
+}
+.user-details .gender-details{
+    width: 100%;
+    margin-top: 10px;
+}
+.user-details .gender-details .gender div label{
+    display: flex;
+    align-items: center;
+}
+.user-details .gender-details .gender div label input{
+    height: 20px;
+    width: 20px;
+    margin-right: 10px;
+    cursor: pointer;
 }
 .user-details .input-box input:focus{
     border-color: #666699;
 }
-form .submit{
+form .button{
     height: 45px;
     margin: 13px 0;
 }
-form .submit input{
+form .button input{
     height: 100%;
     width: 100%;
     outline: none;
@@ -86,25 +104,14 @@ form .submit input{
     letter-spacing: 1px;
     background: linear-gradient(135deg, #71b7e6, #9b59b6);
 }
-form .submit input:hover{
+form .button input:hover{
     background: linear-gradient(-115deg, #71b7e6, #9b59b6);
     cursor: pointer;
 }
-.signup{
-    padding-top: 10px;
-    text-align: center;
+.fa-eye{
+    cursor: pointer;
 }
-.text-span{
-    color: #666666;
-    font-size: 20px;
-}
-.signup-btn{
-    font-size: 20px;
-    text-decoration: none;
-    color: #3a3a3a;
-}
-.signup-btn:hover{
-    color: #666666;
+.fa-eye-slash{
     cursor: pointer;
 }
 #hide1{
@@ -118,48 +125,63 @@ form .submit input:hover{
     top: 28px;
     margin-left: 310px;
 }
-::placeholder{
-    color: rgb(44, 44, 44);
-    padding-bottom: 10px;
+#hide3{
+    display: none;
+    position: relative;
+    top: 28px;
+    margin-left: 310px;
 }
-
+#hide4{
+    position: relative;
+    top: 28px;
+    margin-left: 310px;
+}
+#date{
+    margin-top: -4px;
+}
+#title{
+    font-size: 20px;
+    font-weight: 500;
+    position:relative;
+    color: black;
+}
 .fa{
-    color: #626262;
+    color: rgb(44, 44, 44);
     position: absolute;
 }
-.fa-user{
-    top: 250px;
+::placeholder{
+    color: rgb(0, 0, 0);
 }
-.fa-key{
-    top: 317px;
+li{
+    color: #160b0b;
+    background-color: white;
+    font-weight: 700;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
+    list-style-type: none;
+}
+form .errors{
+    text-align: left;
+    margin: 5px;
+}
+li::marker{
+    display: none;
 }
 #pass-box{
-    margin-top: -25px;
+    margin-top: -15px;
 }
+
 p{
     color: #3a3a3a;
+    background-color: white;
     font-size: 15px;
     font-weight: 700;
     font-family: cursive;
 }
-form .messages{
+.container .messages{
     text-align: center;
     font-variant: small-caps;
 }
-.top{
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    top: 65px;
-    text-align: center;
-}
-#guide{
-    font-size: 20px;
-    font-weight: 100;
-    font-family: 'Times New Roman', Times, serif;
-}
-#welcome{
-    font-size: 25px;
-    font-weight: 600;
-    font-family: 'Times New Roman', Times, serif;
-}
+/* .errors .errorlist li{
+    display: none;
+} */

@@ -7,11 +7,13 @@ from .models import *
 from django import forms
 from phonenumber_field.widgets import PhoneNumberPrefixWidget
 
+
 class ContactForm(forms.ModelForm):
     class Meta:
         widgets = {
-            'tel': PhoneNumberPrefixWidget(initial='NG'),
+            "tel": PhoneNumberPrefixWidget(initial="NG"),
         }
+
 
 @admin.register(User_detail)
 class ContactAdmin(admin.ModelAdmin):
