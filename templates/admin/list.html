@@ -13,8 +13,13 @@
     {% for x in mymembers %}
         <tr>
             <td>{{ x.id }}</td>
-            <td>{{ x.firstname }}</td>
-            <td>{{ x.lastname }}</td>
+            <td>{{ x.username }}</td>
+            <td>{{ x.first_name }}</td>
+            <td>{{ x.last_name }}</td>
+            <td>{{ x.email }}</td>
+            <td>{{ x.date_of_birth }}</td>
+            <td>{{ x.gender }}</td>
+            <td>{{ x.tel }}</td>
         </tr>
     {% endfor %}
 </table>
