@@ -20,7 +20,11 @@
             <a href="/user">Click here to create your profile</a>
         </p>
     </div>
-    
+    <div class="update-user">
+        <p class="update">
+            <a href="/update/{{request.user.username}}">Click here to update your details</a>
+        </p>
+    </div>
 
     <div class="button">
         <a href="/signout/">
@@ -40,6 +44,13 @@
             font-size: 20px;
         }
         .user-profile .update a{
+            text-decoration: none;
+            color: black;
+        }
+        .update-user .update{
+            font-size: 20px;
+        }
+        .update-user .update a{
             text-decoration: none;
             color: black;
         }

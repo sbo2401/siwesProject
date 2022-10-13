@@ -151,6 +151,7 @@ form .messages{
     flex-direction: column;
     top: 65px;
     text-align: center;
+    margin-top: -15px;
 }
 #guide{
     font-size: 20px;

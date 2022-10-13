@@ -7,24 +7,67 @@
     <title>List of Student</title>
 </head>
 <body>
+
+    <style>
+        *{
+            margin: 0;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+        body{
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            background-size: cover;
+            background-blend-mode: darken;
+            background-color: rgba(0,0,0,0.6);
+            color:white;
+        }
+        table {
+          border-collapse: collapse;
+          width: auto;
+         
+        }
+        
+        th, td {
+            text-align: left;
+            padding: 8px;
+            color: rgb(14, 14, 14);
+            font-size: 20px;
+        }
+        a{
+            text-align: center;
+            font-size: 20px;
+            text-decoration: none;
+            color: rgb(14, 14, 14);
+        }
+        
+        tr:nth-child(even) {background-color: #f2f2f2;}
+        .button{
+            padding-top: 25px;
+        }
+        .table{
+            padding-left: 5px;
+        }
+        </style>
     <h1>Student List</h1>
 
-    <table border="1">
-    {% for x in mymembers %}
-        <tr>
-            <td>{{ x.id }}</td>
-            <td>{{ x.username }}</td>
-            <td>{{ x.first_name }}</td>
-            <td>{{ x.last_name }}</td>
-            <td>{{ x.email }}</td>
-            <td>{{ x.date_of_birth }}</td>
-            <td>{{ x.gender }}</td>
-            <td>{{ x.tel }}</td>
-        </tr>
-    {% endfor %}
-    </table>
+    <div class="table" style="overflow-x:auto ;">
+        <table>
+            <tr>
+                <th>Matric Number</th>
+            </tr>
+        {% for x in mymembers %}
+            
+            <tr>
+                <td>{{ x.username }}</td>
+                <td><a href="/delete/{{ x.username }}">Delete</a></td>
+            </tr>
+        {% endfor %}
+        </table>
+    </div>
     <div class="button">
-        <a href="/signout/">
+        <a href="/listout/">
             <input type="submit" value="SignOut">
         </a>
         

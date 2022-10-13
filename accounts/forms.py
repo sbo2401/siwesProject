@@ -85,7 +85,7 @@ class Register(forms.Form):
 
 class Signin(forms.Form):
     username = forms.CharField(
-        max_length=255,
+        max_length=9,
         widget=forms.TextInput(attrs={"placeholder": "Enter Your Userame"}),
     )
     password = forms.CharField(
@@ -102,17 +102,23 @@ class Userdetail(forms.ModelForm):
         fields = "__all__"
         widgets = {
             "first_name": forms.TextInput(
-                attrs={"placeholder": "Enter Your First Name"}
+                attrs={"placeholder": "Enter Your First Name", "readonly": "readonly"}
             ),
-            "last_name": forms.TextInput(attrs={"placeholder": "Enter Your Last Name"}),
-            "other_name": forms.TextInput(attrs={"placeholder": "Enter Other Names"}),
+            "last_name": forms.TextInput(
+                attrs={"placeholder": "Enter Your Last Name", "readonly": "readonly"}
+            ),
             "email": forms.EmailInput(
-                attrs={"placeholder": "Enter Your E-mail Address"}
+                attrs={
+                    "placeholder": "Enter Your E-mail Address",
+                    "readonly": "readonly",
+                }
             ),
             "date_of_birth": forms.DateInput(attrs={"type": "date"}),
             "gender": forms.RadioSelect(attrs={"type": "radio", "class": "gender"}),
             "tel": forms.TextInput(attrs={"placeholder": "Enter Your Phone Number"}),
-            "username": forms.TextInput(attrs={"placeholder": "Enter Your Username"}),
+            "username": forms.TextInput(
+                attrs={"placeholder": "Enter Your Username", "readonly": "readonly"}
+            ),
         }
 
     def clean(self):
@@ -128,3 +134,13 @@ class Userdetail(forms.ModelForm):
                 self.errors[""] = self.error_class(["E-mail already in use"])
             elif instance.tel == tel:
                 self.errors[""] = self.error_class(["Phone Number already exists"])
+
+
+class View_details(forms.Form):
+    username = (forms.CharField(),)
+    first_name = (forms.CharField(),)
+    last_name = (forms.CharField(),)
+    email = (forms.EmailField(widget=forms.EmailInput()),)
+    date = (forms.CharField(widget=forms.DateInput(attrs={"type": "date"})),)
+    gender = forms.CharField(widget=forms.RadioSelect())
+    tel = PhoneNumberField()
