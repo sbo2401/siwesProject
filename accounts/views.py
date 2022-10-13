@@ -151,12 +151,14 @@ def delete(request, username):
     student.delete()
     return HttpResponseRedirect(reverse("studentlist"))
 
+
 def update(request, username):
     mymember = User_detail.objects.get(username=username)
-    template = loader.get_template('update.html')
+    template = loader.get_template("update.html")
     context = {
-    'mymember': mymember,
-  }
+        "mymember": mymember,
+    }
     return HttpResponse(template.render(context, request))
+
 
 # def updaterecord(request, username)
