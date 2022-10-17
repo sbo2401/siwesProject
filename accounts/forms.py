@@ -136,11 +136,3 @@ class Userdetail(forms.ModelForm):
                 self.errors[""] = self.error_class(["Phone Number already exists"])
 
 
-class View_details(forms.Form):
-    username = (forms.CharField(),)
-    first_name = (forms.CharField(),)
-    last_name = (forms.CharField(),)
-    email = (forms.EmailField(widget=forms.EmailInput()),)
-    date = (forms.CharField(widget=forms.DateInput(attrs={"type": "date"})),)
-    gender = forms.CharField(widget=forms.RadioSelect())
-    tel = PhoneNumberField()

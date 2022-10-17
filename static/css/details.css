@@ -161,7 +161,14 @@ li{
 }
 form .errors{
     text-align: left;
-    margin: 5px;
+    margin: 10px 0px 0px 0px;
+    padding: 10px 0px 0px 0px;
+}
+p{
+    color: #3a3a3a;
+    font-size: 15px;
+    font-weight: 700;
+    font-family: cursive;
 }
 li::marker{
     display: none;
@@ -171,11 +178,11 @@ li::marker{
 }
 
 p{
-    color: #3a3a3a;
+    color: #160b0b;
     background-color: white;
-    font-size: 15px;
     font-weight: 700;
-    font-family: cursive;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
 }
 .container .messages{
     text-align: center;

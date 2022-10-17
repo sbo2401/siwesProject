@@ -5,66 +5,39 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>List of Student</title>
+    <link rel="stylesheet" href="/static/css/list.css">
 </head>
 <body>
-
-    <style>
-        *{
-            margin: 0;
-            box-sizing: border-box;
-            font-family: inherit;
-        }
-        body{
-            height: 100vh;
-            justify-content: center;
-            align-items: center;
-            background-size: cover;
-            background-blend-mode: darken;
-            background-color: rgba(0,0,0,0.6);
-            color:white;
-        }
-        table {
-          border-collapse: collapse;
-          width: auto;
-         
-        }
-        
-        th, td {
-            text-align: left;
-            padding: 8px;
-            color: rgb(14, 14, 14);
-            font-size: 20px;
-        }
-        a{
-            text-align: center;
-            font-size: 20px;
-            text-decoration: none;
-            color: rgb(14, 14, 14);
-        }
-        
-        tr:nth-child(even) {background-color: #f2f2f2;}
-        .button{
-            padding-top: 25px;
-        }
-        .table{
-            padding-left: 5px;
-        }
-        </style>
     <h1>Student List</h1>
 
     <div class="table" style="overflow-x:auto ;">
         <table>
             <tr>
                 <th>Matric Number</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>E-mail</th>
+                <th>D.O.B</th>
+                <th>Gender</th>
+                <th>Phone Number</th>
             </tr>
-        {% for x in mymembers %}
+        {% for x in student %}
             
             <tr>
                 <td>{{ x.username }}</td>
-                <td><a href="/delete/{{ x.username }}">Delete</a></td>
+                <td>{{ x.first_name }}</td>
+                <td>{{ x.last_name }}</td>
+                <td>{{ x.email }}</td>
+                <td>{{ x.date_of_birth }}</td>
+                <td>{{ x.gender }}</td>
+                <td>{{ x.tel }}</td>
+                <td class="delete"><a href="/delete/{{x.username}}">Delete</a></td>
             </tr>
         {% endfor %}
         </table>
+    </div>
+    <div class="home">
+        <a href="/index/">Back to homepage</a>
     </div>
     <div class="button">
         <a href="/listout/">

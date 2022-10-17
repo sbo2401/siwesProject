@@ -11,7 +11,11 @@ from .forms import *
 
 # Create your views here.
 
+@login_required(login_url="signin")
+def index(request):
+    return render(request, "index.html", {})
 
+    
 def register(request):
     if request.method == "POST":
         form = Register(request.POST)
@@ -40,7 +44,7 @@ def register(request):
 
 def signin(request):
     if request.user.is_authenticated:
-        return redirect(profile)
+        return redirect(index)
     if request.method == "POST":
         form = Signin(request.POST)
         if form.is_valid():
@@ -49,24 +53,19 @@ def signin(request):
 
             user = auth.authenticate(username=username, password=password)
 
-            if not user.is_superuser and user is not None:
+            if user is not None:
                 auth.login(request, user)
-                return redirect("profile")
-            else:
-                messages.error(request, "Invalid credentials")
-                return redirect("signin")
+                return redirect(index)
+
+            elif user is None:
+                messages.error(request, "User does not exist")
+                return redirect(signin)
     else:
         form = Signin()
         return render(request, "accounts/login.html", {"form": form})
 
 
-@login_required(login_url="signin")
-def profile(request):
-    if not request.user.is_superuser:
-        template = loader.get_template("accounts/profile.html")
-        return HttpResponse(template.render({}, request))
-    elif request.user.is_authenticated and request.user.is_superuser:
-        return redirect("signout")
+
 
 
 @login_required(login_url="signin")
@@ -76,10 +75,12 @@ def user(request):
         if form.is_valid():
             user = form.save(commit=False)
             user.save()
-            return render(request, "thanks.html")
+            messages.success(request, "Thank you for filling Out this form. \nYou can close the page")
+            return redirect(index)
 
     elif request.user.is_authenticated and request.user.is_superuser:
-        return redirect("signin")
+        messages.error(request, "please login with a non administrative account")
+        return redirect(signout)
     else:
         form = Userdetail(
             initial={
@@ -125,8 +126,8 @@ def superuser(request):
 @login_required(login_url="superuser")
 def studentlist(request):
     if request.user.is_superuser and request.user.is_authenticated:
-        mymembers = User_detail.objects.all().order_by("username").values()
-        return render(request, "admin/list.html", {"mymembers": mymembers})
+        student = User_detail.objects.all().order_by("username").values()
+        return render(request, "admin/list.html", {"student": student})
 
     elif not request.user.is_superuser and request.user.is_authenticated:
         messages.error(
@@ -143,22 +144,12 @@ def studentlist(request):
 
 def listout(request):
     logout(request)
-    return redirect(superuser)
+    return redirect(signin)
+
+
 
 
 def delete(request, username):
     student = User_detail.objects.get(username=username)
     student.delete()
     return HttpResponseRedirect(reverse("studentlist"))
-
-
-def update(request, username):
-    mymember = User_detail.objects.get(username=username)
-    template = loader.get_template("update.html")
-    context = {
-        "mymember": mymember,
-    }
-    return HttpResponse(template.render(context, request))
-
-
-# def updaterecord(request, username)

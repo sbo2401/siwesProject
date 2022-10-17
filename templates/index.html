@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siwes Project</title>
+</head>
+<body>
+    <style>
+        body{
+            height: max-content;
+            background-blend-mode: darken;
+            background-color: rgba(0,0,0,0.65);
+            color: white;
+        }
+        .welcome-text{
+            text-align: center;
+        }
+        p{
+            color: black;
+            font-size: 20px;
+            font-weight: 700;
+            font-family: cursive;
+        }
+        a{
+            color: #0a0a0a;
+            text-decoration: none;
+        }
+        .messages{
+            font-variant: small-caps;
+}
+    </style>
+    <div class="welcome-text">
+        <h1 class="welcome">Welcome {{ request.user.username }}</h1>
+    </div>
+    <div class="jobs">
+        <p class="user">
+            <a href="/user">Click Here to fill in your profile</a>
+        </p>
+        <p class="admin">
+            <a href="/studentlist">Click here to check student list</a>
+        </p>
+    </div>
+    <div class="signout">
+        <a href="/signout/">
+            <input type="submit" value="SignOut">
+        </a>
+    </div>
+    <div class="messages">
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+</body>
+</html>
