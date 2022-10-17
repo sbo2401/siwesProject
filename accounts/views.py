@@ -11,11 +11,12 @@ from .forms import *
 
 # Create your views here.
 
+
 @login_required(login_url="signin")
 def index(request):
     return render(request, "index.html", {})
 
-    
+
 def register(request):
     if request.method == "POST":
         form = Register(request.POST)
@@ -65,9 +66,6 @@ def signin(request):
         return render(request, "accounts/login.html", {"form": form})
 
 
-
-
-
 @login_required(login_url="signin")
 def user(request):
     if request.method == "POST":
@@ -75,7 +73,9 @@ def user(request):
         if form.is_valid():
             user = form.save(commit=False)
             user.save()
-            messages.success(request, "Thank you for filling Out this form. \nYou can close the page")
+            messages.success(
+                request, "Thank you for filling Out this form. \nYou can close the page"
+            )
             return redirect(index)
 
     elif request.user.is_authenticated and request.user.is_superuser:
@@ -145,8 +145,6 @@ def studentlist(request):
 def listout(request):
     logout(request)
     return redirect(signin)
-
-
 
 
 def delete(request, username):
