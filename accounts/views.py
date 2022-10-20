@@ -146,6 +146,18 @@ def listout(request):
     logout(request)
     return redirect(signin)
 
+def update(request, username):
+    if request.user.is_authenticated and request.user.is_superuser:
+        messages.error(request, "Please login with a non administrative account")
+        return redirect(signout)
+    else:
+        user = User_detail.objects.get(username=username)
+        template = loader.get_template('update.html')
+        return HttpResponse(template.render({"user":user}, request))
+
+def update1(request):
+    form = Updatedetail()
+    return render(request, "update.html", {"form":form})
 
 def delete(request, username):
     student = User_detail.objects.get(username=username)

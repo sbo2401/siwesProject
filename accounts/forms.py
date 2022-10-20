@@ -134,3 +134,8 @@ class Userdetail(forms.ModelForm):
                 self.errors[""] = self.error_class(["E-mail already in use"])
             elif instance.tel == tel:
                 self.errors[""] = self.error_class(["Phone Number already exists"])
+
+class Updatedetail(forms.ModelForm):
+     class Meta:
+        model = User_detail
+        fields = "__all__"

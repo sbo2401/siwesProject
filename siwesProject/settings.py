@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-6ki$4yud^+(za)-av5!$$os48fj$um)klevh$ot^3=p@o+-bt="
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["127.0.0.1", ".herokuapp.com", "localhost"]
 
@@ -32,7 +32,7 @@ ALLOWED_HOSTS = ["127.0.0.1", ".herokuapp.com", "localhost"]
 # Application definition
 
 INSTALLED_APPS = [
-    "whitenoise.runserver_nostatic",
+    # "whitenoise.runserver_nostatic",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -46,7 +46,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",
+    # "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -80,12 +80,20 @@ WSGI_APPLICATION = "siwesProject.wsgi.application"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
+    # "default": {
+    #     "ENGINE": "django.db.backends.postgresql_psycopg2",
+    #     "NAME": "decv8fgnl6erp5",
+    #     "USER": "ytmlkcqrebzvyc",
+    #     "PASSWORD": "8e5c7d6eb477e1e4b9f747f092c95c85a28b24fa09787f4808f6a48a9a48c96f",
+    #     "HOST": "ec2-63-32-248-14.eu-west-1.compute.amazonaws.com",
+    #     "PORT": "5432",
+    # }
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": "decv8fgnl6erp5",
-        "USER": "ytmlkcqrebzvyc",
-        "PASSWORD": "8e5c7d6eb477e1e4b9f747f092c95c85a28b24fa09787f4808f6a48a9a48c96f",
-        "HOST": "ec2-63-32-248-14.eu-west-1.compute.amazonaws.com",
+        "NAME": "siwes",
+        "USER": "subomi",
+        "PASSWORD": "password",
+        "HOST": "localhost",
         "PORT": "5432",
     }
 }
@@ -133,6 +141,6 @@ STATICFILES_DIRS = [BASE_DIR / "static"]
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 SESSION_COOKIE_AGE = 3600

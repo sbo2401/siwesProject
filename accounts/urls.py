@@ -12,5 +12,7 @@ urlpatterns = [
     path("signout/", views.signout, name="signout"),
     path("listout/", views.listout, name="listout"),
     path("studentlist/", views.studentlist, name="studentlist"),
+    path("<slug:slug>", views.update, name="update"),
+    path("update/<str:username>", views.update, name="update"),
     path("delete/<str:username>", views.delete, name="delete"),
 ]
