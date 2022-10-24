@@ -37,11 +37,11 @@
     <div class="jobs">
         {% if request.user.is_superuser %}
             <p class="admin">
-                <a href="/studentlist">Click here to check student list</a>
+                <a href="/studentlist/">Click here to check student list</a>
             </p>
         {% else %}
             <p class="user">
-                <a href="/user">Click Here to fill in your profile</a>
+                <a href="/user/">Click Here to fill in your profile</a>
             </p>
             <p class="update">
                 <a href="/update/{{request.user.username}}">Click here to update your profile</a>
@@ -49,7 +49,7 @@
         {% endif %}
     </div>
     <div class="signout">
-        <a href="/signout">
+        <a href="/signout/">
             <input type="submit" value="SignOut">
         </a>
     </div>
