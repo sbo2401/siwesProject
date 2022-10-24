@@ -171,7 +171,7 @@ def update(request, username):
             }
         )
         user = User_detail.objects.get(username=username)
-        template = loader.get_template("admin/update.html")
+        template = loader.get_template("accounts/update.html")
         return HttpResponse(
             template.render(
                 {
@@ -187,3 +187,18 @@ def delete(request, username):
     student = User_detail.objects.get(username=username)
     student.delete()
     return HttpResponseRedirect(reverse("studentlist"))
+
+def updaterecord(request, username):
+    first_name = request.POST['first_name']
+    last_name = request.POST['last_name']
+    date_of_birth = request.POST['date_of_birth']
+    gender = request.POST['gender']
+    tel = request.POST['tel']
+    user = User_detail.objects.get(username=username)
+    user.first_name = first_name
+    user.last_name = last_name
+    user.date_of_birth = date_of_birth
+    user.gender = gender
+    user.tel = tel
+    user.save()
+    return HttpResponseRedirect(reverse(index))
