@@ -35,15 +35,18 @@
         <h1 class="welcome">Welcome {{ request.user.username }}</h1>
     </div>
     <div class="jobs">
-        <p class="user">
-            <a href="/user">Click Here to fill in your profile</a>
-        </p>
-        <p class="admin">
-            <a href="/studentlist">Click here to check student list</a>
-        </p>
-        <p class="update">
-            <a href="/update/{{request.user.username}}">Click here to update your profile</a>
-        </p>
+        {% if request.user.is_superuser %}
+            <p class="admin">
+                <a href="/studentlist">Click here to check student list</a>
+            </p>
+        {% else %}
+            <p class="user">
+                <a href="/user">Click Here to fill in your profile</a>
+            </p>
+            <p class="update">
+                <a href="/update/{{request.user.username}}">Click here to update your profile</a>
+            </p>
+        {% endif %}
     </div>
     <div class="signout">
         <a href="/signout">

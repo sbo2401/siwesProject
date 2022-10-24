@@ -20,4 +20,3 @@ class User_detail(models.Model):
     gender = models.CharField(max_length=50, choices=GENDER, default="")
     slug = models.SlugField(default="", null=False, db_index=True, blank=True)
     tel = PhoneNumberField()
-

@@ -4,16 +4,6 @@ from .models import *
 
 
 class Register(forms.Form):
-    first_name = forms.CharField(
-        max_length=255,
-        widget=forms.TextInput(attrs={"placeholder": "Enter Your First Name"}),
-    )
-
-    last_name = forms.CharField(
-        max_length=255,
-        widget=forms.TextInput(attrs={"placeholder": "Enter Your Last Name"}),
-    )
-
     username = forms.CharField(
         max_length=9,
         widget=forms.TextInput(attrs={"placeholder": "Enter Your Matric Number"}),
@@ -102,10 +92,14 @@ class Userdetail(forms.ModelForm):
         fields = "__all__"
         widgets = {
             "first_name": forms.TextInput(
-                attrs={"placeholder": "Enter Your First Name", "readonly": "readonly"}
+                attrs={
+                    "placeholder": "Enter Your First Name",
+                }
             ),
             "last_name": forms.TextInput(
-                attrs={"placeholder": "Enter Your Last Name", "readonly": "readonly"}
+                attrs={
+                    "placeholder": "Enter Your Last Name",
+                }
             ),
             "email": forms.EmailInput(
                 attrs={
@@ -113,11 +107,27 @@ class Userdetail(forms.ModelForm):
                     "readonly": "readonly",
                 }
             ),
-            "date_of_birth": forms.DateInput(attrs={"type": "date"}),
-            "gender": forms.RadioSelect(attrs={"type": "radio", "class": "gender"}),
-            "tel": forms.TextInput(attrs={"placeholder": "Enter Your Phone Number"}),
+            "date_of_birth": forms.DateInput(
+                attrs={
+                    "type": "date",
+                }
+            ),
+            "gender": forms.RadioSelect(
+                attrs={
+                    "type": "radio",
+                    "class": "gender",
+                }
+            ),
+            "tel": forms.TextInput(
+                attrs={
+                    "placeholder": "Enter Your Phone Number",
+                }
+            ),
             "username": forms.TextInput(
-                attrs={"placeholder": "Enter Your Username", "readonly": "readonly"}
+                attrs={
+                    "placeholder": "Enter Your Username",
+                    "readonly": "readonly",
+                }
             ),
         }
 
@@ -135,7 +145,46 @@ class Userdetail(forms.ModelForm):
             elif instance.tel == tel:
                 self.errors[""] = self.error_class(["Phone Number already exists"])
 
+
 class Updatedetail(forms.ModelForm):
-     class Meta:
+    class Meta:
         model = User_detail
         fields = "__all__"
+        widgets = {
+            "username": forms.TextInput(
+                attrs={
+                    "readonly": "readonly",
+                }
+            ),
+            "first_name": forms.TextInput(
+                attrs={
+                    "placeholder": "Enter Your First Name",
+                }
+            ),
+            "last_name": forms.TextInput(
+                attrs={
+                    "placeholder": "Enter Your Last Name",
+                }
+            ),
+            "email": forms.EmailInput(
+                attrs={
+                    "readonly": "readonly",
+                }
+            ),
+            "date_of_birth": forms.DateInput(
+                attrs={
+                    "type": "date",
+                }
+            ),
+            "gender": forms.RadioSelect(
+                attrs={
+                    "type": "radio",
+                    "class": "gender",
+                }
+            ),
+            "tel": forms.TextInput(
+                attrs={
+                    "placeholder": "Enter Your Phone Number",
+                }
+            ),
+        }

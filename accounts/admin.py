@@ -18,5 +18,10 @@ class ContactForm(forms.ModelForm):
 @admin.register(User_detail)
 class ContactAdmin(admin.ModelAdmin):
     form = ContactForm
-    prepopulated_fields = {"slug":("username", "first_name",)}
+    prepopulated_fields = {
+        "slug": (
+            "username",
+            "first_name",
+        )
+    }
     list_display = ("username",)
