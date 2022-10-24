@@ -76,10 +76,15 @@ def signin(request):
 
 @login_required(login_url="signin")
 def user(request):
+    if request.user.is_authenticated and request.user.is_superuser:
+        messages.error(request, "Please login with a non administrative account")
+        return redirect(signout)
     if request.method == "POST":
         form = Userdetail(request.POST)
         if form.is_valid():
             user = form.save(commit=False)
+            user.first_name = user.first_name.lower()
+            user.last_name = user.last_name.lower()
             user.save()
             return redirect(index)
     else:
@@ -201,5 +206,7 @@ def updaterecord(request, username):
     user.date_of_birth = date_of_birth
     user.gender = gender
     user.tel = tel
+    user.first_name = user.first_name.lower()
+    user.last_name = user.last_name.lower()
     user.save()
     return HttpResponseRedirect(reverse(index))
