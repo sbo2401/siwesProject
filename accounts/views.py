@@ -6,6 +6,7 @@ from django.template import loader
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.hashers import check_password
 from .forms import *
 
 
@@ -52,15 +53,17 @@ def signin(request):
             username = request.POST["username"]
             password = request.POST["password"]
 
-            # try:
-
-            user = auth.authenticate(username=username, password=password)
-
-            if user is not None:
-                auth.login(request, user)
-                return redirect(index)
-
-            elif user is None:
+            user = User.objects.filter(username=username).exists()
+            if user:
+                get_user = User.objects.filter(username=username)
+                check_pass = check_password(password, get_user[0].password)
+                if not check_pass:
+                    messages.error(request, "You have entered an incorrect password")
+                    return redirect(signin)
+                else:
+                    login(request, get_user[0])
+                    return redirect(index)
+            else:
                 messages.error(request, "User does not exist")
                 return redirect(signin)
     else:
